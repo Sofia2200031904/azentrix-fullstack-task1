@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sofia's PennyPilot is a simple personal budget tracker for daily income and expenses."
+    />
+    <title>Sofia's PennyPilot | Personal Budget Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <main id="loginView" class="login-view">
+      <section class="login-promo">
+        <div class="brand brand-light">
+          <span class="brand-mark">P</span>
+          <span>Sofia's PennyPilot</span>
+        </div>
+        <div class="promo-copy">
+          <span class="eyebrow">MONEY, MADE SIMPLE</span>
+          <h1>Know where every rupee goes.</h1>
+          <p>
+            A calm, clear space to track spending, grow savings, and make better
+            money decisions.
+          </p>
+          <div class="promo-stats">
+            <div><strong>1 view</strong><span>for your whole month</span></div>
+            <div><strong>100%</strong><span>private on your device</span></div>
+          </div>
+        </div>
+        <div class="promo-orb promo-orb-one"></div>
+        <div class="promo-orb promo-orb-two"></div>
+      </section>
+
+      <section class="login-panel">
+        <form id="loginForm" class="login-card">
+          <div class="mobile-brand brand">
+            <span class="brand-mark">P</span>
+            <span>Sofia's PennyPilot</span>
+          </div>
+          <div>
+            <span class="eyebrow">WELCOME BACK</span>
+            <h2>Sign in to your budget</h2>
+            <p class="muted">Use the default personal account to continue.</p>
+          </div>
+          <label>
+            Username
+            <input
+              id="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Enter username"
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter password"
+              required
+            />
+          </label>
+          <button class="primary-button full-button" type="submit">Sign in</button>
+          <div class="login-hint">
+            <span>Default login</span>
+            <code>Username: user &nbsp; Password: User@123</code>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div id="appView" class="app-view hidden">
+      <aside id="sidebar" class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">P</span>
+          <span>Sofia's PennyPilot</span>
+        </div>
+        <nav aria-label="Main navigation">
+          <button class="nav-item active" type="button" data-page="overview">
+            <span class="nav-icon">⌂</span> Overview
+          </button>
+          <button class="nav-item" type="button" data-page="transactions">
+            <span class="nav-icon">↕</span> Transactions
+          </button>
+        </nav>
+        <div class="sidebar-tip">
+          <span>QUICK TIP</span>
+          <p>Reviewing your spending weekly makes monthly budgeting much easier.</p>
+        </div>
+        <button id="logoutButton" class="logout-button" type="button">
+          <span>↪</span> Sign out
+        </button>
+      </aside>
+
+      <div class="app-content">
+        <header class="topbar">
+          <button id="menuButton" class="icon-button menu-button" type="button" aria-label="Open menu">
+            ☰
+          </button>
+          <div>
+            <span class="today-label">TODAY</span>
+            <span id="todayText"></span>
+          </div>
+          <div class="topbar-actions">
+            <button id="themeButton" class="icon-button theme-button" type="button" aria-label="Toggle dark mode">Dark</button>
+            <button class="icon-button" type="button" data-page="transactions" aria-label="Search transactions">
+              ⌕
+            </button>
+            <div class="profile">
+              <span id="profileInitial" class="profile-avatar">U</span>
+              <div><strong id="profileName">User</strong><span id="profileRole">Personal account</span></div>
+            </div>
+          </div>
+        </header>
+
+        <main class="dashboard">
+          <section class="welcome-row page-section" data-page-view="overview">
+            <div>
+              <p class="eyebrow">FINANCIAL OVERVIEW</p>
+              <h1 id="welcomeHeading">Good morning, User</h1>
+              <p class="muted">Here is how your money is looking this month.</p>
+            </div>
+            <div class="welcome-actions">
+              <label class="month-picker">
+                <span>Month</span>
+                <input id="monthFilter" type="month" />
+              </label>
+              <button id="exportButton" class="secondary-button" type="button" data-export-transactions>Export CSV</button>
+              <button id="addTransactionButton" class="primary-button" type="button" data-add-transaction>
+                <span>＋</span> Add transaction
+              </button>
+            </div>
+          </section>
+
+          <section class="summary-grid page-section" data-page-view="overview" aria-label="Monthly summary">
+            <article class="summary-card balance-card">
+              <div class="summary-icon">₹</div>
+              <div><span>Monthly balance</span><strong id="balanceValue">₹0</strong><small id="balanceNote">Income minus expenses</small></div>
+            </article>
+            <article class="summary-card">
+              <div class="summary-icon income-icon">↗</div>
+              <div><span>Total income</span><strong id="incomeValue">₹0</strong><small id="incomeNote">0 income entries</small></div>
+            </article>
+            <article class="summary-card">
+              <div class="summary-icon expense-icon">↘</div>
+              <div><span>Total expenses</span><strong id="expenseValue">₹0</strong><small id="expenseNote">0 expense entries</small></div>
+            </article>
+          </section>
+
+          <section class="insights-grid page-section" data-page-view="overview">
+            <article class="panel chart-panel">
+              <div class="panel-heading">
+                <div><span class="eyebrow">CASH FLOW</span><h2>Income vs expenses</h2></div>
+                <div class="chart-legend"><span class="income-dot">Income</span><span class="expense-dot">Expenses</span></div>
+              </div>
+              <div id="cashFlowSelection" class="chart-selection">Click any bar to view its amount.</div>
+              <div class="chart-wrap">
+                <canvas id="cashFlowChart" aria-label="Income and expense bar chart"></canvas>
+                <div id="chartEmpty" class="empty-overlay hidden">Add transactions to see your chart.</div>
+              </div>
+            </article>
+            <article class="panel category-panel">
+              <div class="panel-heading">
+                <div><span class="eyebrow">SPENDING</span><h2>Expense categories</h2></div>
+              </div>
+              <div id="categorySelection" class="chart-selection">Click a slice or category to view its amount.</div>
+              <div class="category-pie-wrap">
+                <canvas id="categoryPieChart" aria-label="Category-wise expense pie chart"></canvas>
+                <div class="pie-total"><span>Monthly spend</span><strong id="pieTotalValue">₹0</strong></div>
+                <div id="pieEmpty" class="empty-overlay hidden">No expenses yet.</div>
+              </div>
+              <div id="categoryList" class="category-list"></div>
+            </article>
+          </section>
+
+          <section id="transactionsSection" class="panel transactions-panel page-section hidden" data-page-view="transactions">
+            <div class="panel-heading transaction-heading">
+              <div><span class="eyebrow">ACTIVITY</span><h2>Transactions</h2></div>
+              <div class="transaction-tools">
+                <label class="search-box">
+                  <span>⌕</span>
+                  <input id="searchInput" type="search" placeholder="Search transactions" />
+                </label>
+                <select id="typeFilter" aria-label="Filter by type">
+                  <option value="all">All types</option>
+                  <option value="income">Income</option>
+                  <option value="expense">Expense</option>
+                </select>
+                <button class="secondary-button" type="button" data-export-transactions>Export CSV</button>
+                <button class="primary-button" type="button" data-add-transaction>Add transaction</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th>Type</th><th>Amount</th><th><span class="sr-only">Actions</span></th></tr></thead>
+                <tbody id="transactionBody"></tbody>
+              </table>
+              <div id="transactionEmpty" class="empty-state hidden">
+                <div>₹</div>
+                <h3>No transactions found</h3>
+                <p>Try changing your filters or add your first transaction.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <dialog id="transactionDialog">
+      <form id="transactionForm" method="dialog">
+        <div class="dialog-heading">
+          <div><span class="eyebrow">TRANSACTION</span><h2 id="dialogTitle">Add transaction</h2></div>
+          <button id="closeDialogButton" class="icon-button" type="button" aria-label="Close">×</button>
+        </div>
+        <input id="transactionId" type="hidden" />
+        <div class="type-toggle">
+          <label><input type="radio" name="type" value="expense" checked /><span>Expense</span></label>
+          <label><input type="radio" name="type" value="income" /><span>Income</span></label>
+        </div>
+        <label>Description<input id="description" type="text" maxlength="60" placeholder="e.g. Grocery shopping" required /></label>
+        <div class="form-grid">
+          <label>Amount (₹)<input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></label>
+          <label>Date<input id="date" type="date" required /></label>
+        </div>
+        <label>Category<select id="category" required></select></label>
+        <div class="dialog-actions">
+          <button id="cancelDialogButton" class="secondary-button" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Save transaction</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
