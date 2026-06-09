@@ -61,6 +61,9 @@ The app is organized into three small files:
 
 Transactions are saved in `localStorage`. Dashboard values are derived from the selected month's transactions every time data changes, keeping the cards, category breakdown, chart, and transaction list consistent.
 
+## Public Link 
+**https://azentrix-fullstack-task1-nu.vercel.app/**
+
 ## Video Demo
 
 Loom demo link: **Add the recorded Loom link here before submission.**
