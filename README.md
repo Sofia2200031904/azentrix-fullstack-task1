@@ -66,7 +66,7 @@ Transactions are saved in `localStorage`. Dashboard values are derived from the 
 
 ## Video Demo
 
-Loom demo link: **Add the recorded Loom link here before submission.**
+Loom demo link: **[Add the recorded Loom link here before submission.](https://www.loom.com/share/5801a029333043d7b0750f8c59978e0a)**
 
 
 
