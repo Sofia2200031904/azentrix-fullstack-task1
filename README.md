@@ -65,22 +65,4 @@ Transactions are saved in `localStorage`. Dashboard values are derived from the 
 
 Loom demo link: **Add the recorded Loom link here before submission.**
 
-A useful 3-5 minute recording flow is:
 
-1. Sign in using `user / User@123`.
-2. Add an expense and show both charts updating.
-3. Edit and delete the transaction.
-4. Demonstrate search, type filtering, CSV export, and dark mode.
-5. Show the responsive mobile layout.
-
-## Submission Checklist
-
-- Loom demo link added
-- Features, tech stack, and setup steps documented
-- Repository named `azentrix-fullstack-task1`
-- Loom video recorded and linked before submission
-
-## Notes
-
-- This is a front-end demonstration app, so the provided credentials are intentionally stored in client-side code.
-- For production use, authentication and financial data should be moved to a secured backend and database.
